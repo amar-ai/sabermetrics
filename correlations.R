@@ -65,3 +65,14 @@ ggarrange(plot_1,plot_2)
 bat_99_02 %>% lm(singles ~ mean_singles,data = .) %>% .$coef
 bat_99_02 %>% lm(bb ~ mean_bb,data = .) %>% .$coef
 
+
+#Tibble exercise
+get_slope <- function(data) {
+  fit <- lm(R ~ BB, data = data)
+  sum.fit <- summary(fit)
+  
+  data.frame(slope = sum.fit$coefficients[2, "Estimate"], 
+             se = sum.fit$coefficients[2, "Std. Error"],
+             pvalue = sum.fit$coefficients[2, "Pr(>|t|)"])
+}
+
