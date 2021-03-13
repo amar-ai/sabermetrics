@@ -30,3 +30,8 @@ Teams %>% filter(yearID %in% 1961:2001 ) %>%
 Teams %>% filter(yearID %in% 1961:2001 ) %>%
   mutate(X3B_per_game = X3B/G, X2B_per_game = X2B/G) %>%
   summarise(cor(X3B_per_game,X2B_per_game))
+
+#Least Square Estimate and Linear Model
+Teams %>% filter(yearID %in% 1961:2001 ) %>%
+  mutate(R_per_game = R/G,HR_per_game = HR/G,BB_per_game = BB/G) %>%
+  lm(R_per_game ~ BB_per_game + HR_per_game,data = .) %>% .$coef
